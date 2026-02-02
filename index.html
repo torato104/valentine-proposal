@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine ❤️</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden; /* Taaki button screen ke bahar na dikhe */
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 90%;
+            z-index: 1;
+        }
+
+        h1 { color: #d81b60; font-size: 24px; }
+
+        .cat-img { 
+            width: 150px; 
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            touch-action: none; /* Mobile par tap-zoom rokne ke liye */
+        }
+
+        #yesBtn { background-color: #ff4d6d; color: white; }
+
+        #noBtn { 
+            background-color: #90a4ae; 
+            color: white; 
+            position: absolute; /* Ye bhagne ke liye zaroori hai */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-content">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWdtZndpZzJueXp4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHgmZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PXM/iCvpdvYitfXvG7TIsi/giphy.gif" alt="Cute Cat" class="cat-img">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+
+        // Button ko bhagane ka function
+        function moveButton() {
+            // Screen ki width aur height nikalna
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+
+            // Random coordinates generate karna
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            // Nayi position set karna
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // 1. Computer ke liye (Mouse Hover)
+        noBtn.addEventListener('mouseover', moveButton);
+
+        // 2. Mobile ke liye (Touch)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Click hone se rokna
+            moveButton();
+        });
+
+        // Yes click hone par celebration
+        function celebrate() {
+            const container = document.getElementById('main-content');
+            container.innerHTML = `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZkYWpnbXp0eXF4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26FLdmIp6wJr91JAI/giphy.gif" width="200">
+                <h1 style="color: #ff4d6d;">Yay! I knew it! Love you! ❤️</h1>
+            `;
+            document.body.style.backgroundColor = "#ffc1cc";
+        }
+    </script>
+</body>
+</html>
